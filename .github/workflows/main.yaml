@@ -1,0 +1,96 @@
+name: Main
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+
+jobs:
+  verify-root:
+    name: Verify root module
+    runs-on: ubuntu-latest
+    steps:
+
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Setup Go
+        uses: actions/setup-go@v2
+        with:
+          go-version: 1.13
+
+      - name: Install dependencies
+        run: |
+          go mod download
+          go mod vendor
+
+      - name: Run linters
+        uses: golangci/golangci-lint-action@v2
+        with:
+          version: v1.31
+
+      - name: Run tests
+        run: |
+          go test -v ./...
+
+  verify-gopgv9:
+    name: Verify gopgv9
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: gopgv9
+    steps:
+
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Setup Go
+        uses: actions/setup-go@v2
+        with:
+          go-version: 1.13
+
+      - name: Install dependencies
+        run: |
+          go mod download
+          go mod vendor
+
+      - name: Run linters
+        uses: golangci/golangci-lint-action@v2
+        with:
+          version: v1.31
+          working-directory: gopgv9
+
+      - name: Run tests
+        run: |
+          go test -v ./...
+
+  verify-gopgv10:
+    name: Verify gopgv10
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: gopgv10
+    steps:
+
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Setup Go
+        uses: actions/setup-go@v2
+        with:
+          go-version: 1.13
+
+      - name: Install dependencies
+        run: |
+          go mod download
+          go mod vendor
+
+      - name: Run linters
+        uses: golangci/golangci-lint-action@v2
+        with:
+          version: v1.31
+          working-directory: gopgv10
+
+      - name: Run tests
+        run: |
+          go test -v ./...
