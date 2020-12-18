@@ -15,6 +15,12 @@ Example Grafana dashboards:
     ```shell
     go get github.com/hypnoglow/go-pg-monitor
     ```
+   
+   Also add the submodule with the go-pg version you use:
+
+    ```shell
+    go get github.com/hypnoglow/go-pg-monitor/gopg10
+    ```
 
 2. Add monitor to your application entrypoint:
 
@@ -33,3 +39,12 @@ Example Grafana dashboards:
     ```
 
 See [example](example/main.go) for details.
+
+## Exported metrics
+
+- `go_pg_pool_hits` - (Gauge) Number of times free connection was found in the pool
+- `go_pg_pool_misses` - (Gauge) Number of times free connection was NOT found in the pool
+- `go_pg_pool_timeouts` - (Gauge) Number of times a wait timeout occurred
+- `go_pg_pool_total_connections` - (Gauge) Number of total connections in the pool
+- `go_pg_pool_idle_connections` - (Gauge) Number of idle connections in the pool
+- `go_pg_pool_stale_connections` - (Gauge) Number of stale connections removed from the pool
