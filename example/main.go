@@ -18,8 +18,19 @@ func main() {
 	db := pg.Connect(dbOpts)
 
 	mon := monitor.NewMonitor(
+		// Observer package must match your go-pg version.
+		// E.g. for go-pg v10.x.x use package gopgv10.
 		gopgv9.NewObserver(db),
-		monitor.NewMetrics(monitor.MetricsWithNamespace("my_app")),
+		monitor.NewMetrics(
+			// If you already have application labels on your scraped metrics (e.g. in k8s),
+			// then you probably don't need this, because you can query metrics with selector:
+			// go_pg_pool_hits{app="my-app"}
+			//
+			// If your metrics lack such labels then you can set this option,
+			// so your metrics will look like this:
+			// my_app_go_pg_pool_hits{}
+			monitor.MetricsWithNamespace("my_app"),
+		),
 	)
 
 	mon.Open()
