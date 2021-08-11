@@ -19,7 +19,7 @@ Example Grafana dashboards:
    Also add the submodule with the go-pg version you use:
 
     ```shell
-    go get github.com/hypnoglow/go-pg-monitor/gopg10
+    go get github.com/hypnoglow/go-pg-monitor/gopgv10
     ```
 
 2. Add monitor to your application entrypoint:
