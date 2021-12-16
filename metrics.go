@@ -15,6 +15,8 @@ type Metrics struct {
 	namespace string
 	subsystem string
 
+	constLabels prometheus.Labels
+
 	hits     prometheus.Gauge
 	misses   prometheus.Gauge
 	timeouts prometheus.Gauge
@@ -41,6 +43,13 @@ func MetricsWithSubsystem(subsystem string) MetricsOption {
 	}
 }
 
+// MetricsWithConstLabels is an option that sets metric constant labels.
+func MetricsWithConstLabels(constLabels prometheus.Labels) MetricsOption {
+	return func(metrics *Metrics) {
+		metrics.constLabels = constLabels
+	}
+}
+
 // NewMetrics returns a new configured Metrics.
 func NewMetrics(opts ...MetricsOption) *Metrics {
 	m := &Metrics{
@@ -54,10 +63,11 @@ func NewMetrics(opts ...MetricsOption) *Metrics {
 
 	hits := prometheus.NewGauge(
 		prometheus.GaugeOpts{
-			Namespace: m.namespace,
-			Subsystem: m.subsystem,
-			Name:      "pool_hits",
-			Help:      "Number of times free connection was found in the pool",
+			Namespace:   m.namespace,
+			Subsystem:   m.subsystem,
+			ConstLabels: m.constLabels,
+			Name:        "pool_hits",
+			Help:        "Number of times free connection was found in the pool",
 		},
 	)
 	prometheus.MustRegister(hits)
@@ -65,10 +75,11 @@ func NewMetrics(opts ...MetricsOption) *Metrics {
 
 	misses := prometheus.NewGauge(
 		prometheus.GaugeOpts{
-			Namespace: m.namespace,
-			Subsystem: m.subsystem,
-			Name:      "pool_misses",
-			Help:      "Number of times free connection was NOT found in the pool",
+			Namespace:   m.namespace,
+			Subsystem:   m.subsystem,
+			ConstLabels: m.constLabels,
+			Name:        "pool_misses",
+			Help:        "Number of times free connection was NOT found in the pool",
 		},
 	)
 	prometheus.MustRegister(misses)
@@ -76,10 +87,11 @@ func NewMetrics(opts ...MetricsOption) *Metrics {
 
 	timeouts := prometheus.NewGauge(
 		prometheus.GaugeOpts{
-			Namespace: m.namespace,
-			Subsystem: m.subsystem,
-			Name:      "pool_timeouts",
-			Help:      "Number of times a wait timeout occurred",
+			Namespace:   m.namespace,
+			Subsystem:   m.subsystem,
+			ConstLabels: m.constLabels,
+			Name:        "pool_timeouts",
+			Help:        "Number of times a wait timeout occurred",
 		},
 	)
 	prometheus.MustRegister(timeouts)
@@ -87,10 +99,11 @@ func NewMetrics(opts ...MetricsOption) *Metrics {
 
 	totalConns := prometheus.NewGauge(
 		prometheus.GaugeOpts{
-			Namespace: m.namespace,
-			Subsystem: m.subsystem,
-			Name:      "pool_total_connections",
-			Help:      "Number of total connections in the pool",
+			Namespace:   m.namespace,
+			Subsystem:   m.subsystem,
+			ConstLabels: m.constLabels,
+			Name:        "pool_total_connections",
+			Help:        "Number of total connections in the pool",
 		},
 	)
 	prometheus.MustRegister(totalConns)
@@ -98,10 +111,11 @@ func NewMetrics(opts ...MetricsOption) *Metrics {
 
 	idleConns := prometheus.NewGauge(
 		prometheus.GaugeOpts{
-			Namespace: m.namespace,
-			Subsystem: m.subsystem,
-			Name:      "pool_idle_connections",
-			Help:      "Number of idle connections in the pool",
+			Namespace:   m.namespace,
+			Subsystem:   m.subsystem,
+			ConstLabels: m.constLabels,
+			Name:        "pool_idle_connections",
+			Help:        "Number of idle connections in the pool",
 		},
 	)
 	prometheus.MustRegister(idleConns)
@@ -109,10 +123,11 @@ func NewMetrics(opts ...MetricsOption) *Metrics {
 
 	staleConns := prometheus.NewGauge(
 		prometheus.GaugeOpts{
-			Namespace: m.namespace,
-			Subsystem: m.subsystem,
-			Name:      "pool_stale_connections",
-			Help:      "Number of stale connections removed from the pool",
+			Namespace:   m.namespace,
+			Subsystem:   m.subsystem,
+			ConstLabels: m.constLabels,
+			Name:        "pool_stale_connections",
+			Help:        "Number of stale connections removed from the pool",
 		},
 	)
 	prometheus.MustRegister(staleConns)
