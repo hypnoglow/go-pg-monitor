@@ -1,10 +1,20 @@
 # go-pg-monitor
 
+[![Go Reference](https://pkg.go.dev/badge/github.com/hypnoglow/go-pg-monitor.svg)](https://pkg.go.dev/github.com/hypnoglow/go-pg-monitor)
+
 Provides Prometheus metrics for [go-pg](https://github.com/go-pg/pg) database client.
 
 Example Grafana dashboards:
 
 ![grafana](.github/images/grafana.png)
+
+## Status
+
+This package is now stable.
+
+As the [go-pg](https://github.com/go-pg/pg) in a maintenance mode, it is unlikely
+that new features will be introduced in this package. Fixing bugs and security issues
+will continue.
 
 ## Usage
 

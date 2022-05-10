@@ -9,6 +9,6 @@ replace (
 
 require (
 	github.com/go-pg/pg/v9 v9.0.0
-	github.com/hypnoglow/go-pg-monitor v0.1.0
-	github.com/hypnoglow/go-pg-monitor/gopgv9 v0.1.0
+	github.com/hypnoglow/go-pg-monitor v1.0.0
+	github.com/hypnoglow/go-pg-monitor/gopgv9 v1.0.0
 )
