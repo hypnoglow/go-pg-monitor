@@ -25,7 +25,7 @@ jobs:
           go mod vendor
 
       - name: Run linters
-        uses: golangci/golangci-lint-action@v2
+        uses: golangci/golangci-lint-action@v3
         with:
           version: v1.31
 
@@ -55,7 +55,7 @@ jobs:
           go mod vendor
 
       - name: Run linters
-        uses: golangci/golangci-lint-action@v2
+        uses: golangci/golangci-lint-action@v3
         with:
           version: v1.31
           working-directory: gopgv9
@@ -86,7 +86,7 @@ jobs:
           go mod vendor
 
       - name: Run linters
-        uses: golangci/golangci-lint-action@v2
+        uses: golangci/golangci-lint-action@v3
         with:
           version: v1.31
           working-directory: gopgv10
