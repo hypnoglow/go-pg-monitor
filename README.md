@@ -48,3 +48,13 @@ See [example](example/main.go) for details.
 - `go_pg_pool_total_connections` - (Gauge) Number of total connections in the pool
 - `go_pg_pool_idle_connections` - (Gauge) Number of idle connections in the pool
 - `go_pg_pool_stale_connections` - (Gauge) Number of stale connections removed from the pool
+
+## Reference Grafana Dashboards
+
+You can find two example Grafana dashboards in [grafana/](grafana/) directory. 
+[One](grafana/Postgres Database Client.json) may be suitable when you use only one database object
+in your application code, and the [other](grafana/Postgres Database Client Pools.json) when
+you use different objects (pools) for different parts of the application.
+
+Note that your dashboard may be different if you use metric namespace, different k8s labels, etc.
+So these dashboards are provided only as a starting point for making your own.
