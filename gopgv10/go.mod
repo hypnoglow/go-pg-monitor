@@ -6,5 +6,5 @@ replace github.com/hypnoglow/go-pg-monitor => ../
 
 require (
 	github.com/go-pg/pg/v10 v10.0.0
-	github.com/hypnoglow/go-pg-monitor v0.1.0
+	github.com/hypnoglow/go-pg-monitor v1.0.0
 )
