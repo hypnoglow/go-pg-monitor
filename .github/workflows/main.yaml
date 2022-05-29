@@ -12,12 +12,13 @@ jobs:
     steps:
 
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@2541b1294d2704b0964813337f33b291d3f8596b # v3.0.2
 
       - name: Setup Go
-        uses: actions/setup-go@v2
+        uses: actions/setup-go@b22fbbc2921299758641fab08929b4ac52b32923 # v3.2.0
         with:
-          go-version: 1.13
+          # cache: true
+          go-version-file: 'go.mod'
 
       - name: Install dependencies
         run: |
@@ -25,9 +26,13 @@ jobs:
           go mod vendor
 
       - name: Run linters
-        uses: golangci/golangci-lint-action@v3
+        uses: golangci/golangci-lint-action@537aa1903e5d359d0b27dbc19ddd22c5087f3fbc # v3.2.0
         with:
           version: v1.31
+          args: --verbose
+          # See: https://github.com/golangci/golangci-lint-action/issues/244
+          skip-pkg-cache: true
+          skip-build-cache: true
 
       - name: Run tests
         run: |
@@ -42,12 +47,13 @@ jobs:
     steps:
 
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@2541b1294d2704b0964813337f33b291d3f8596b # v3.0.2
 
       - name: Setup Go
-        uses: actions/setup-go@v2
+        uses: actions/setup-go@b22fbbc2921299758641fab08929b4ac52b32923 # v3.2.0
         with:
-          go-version: 1.13
+          # cache: true
+          go-version-file: 'go.mod'
 
       - name: Install dependencies
         run: |
@@ -55,10 +61,14 @@ jobs:
           go mod vendor
 
       - name: Run linters
-        uses: golangci/golangci-lint-action@v3
+        uses: golangci/golangci-lint-action@537aa1903e5d359d0b27dbc19ddd22c5087f3fbc # v3.2.0
         with:
           version: v1.31
           working-directory: gopgv9
+          args: --verbose
+          # See: https://github.com/golangci/golangci-lint-action/issues/244
+          skip-pkg-cache: true
+          skip-build-cache: true
 
       - name: Run tests
         run: |
@@ -73,12 +83,13 @@ jobs:
     steps:
 
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@2541b1294d2704b0964813337f33b291d3f8596b # v3.0.2
 
       - name: Setup Go
-        uses: actions/setup-go@v2
+        uses: actions/setup-go@b22fbbc2921299758641fab08929b4ac52b32923 # v3.2.0
         with:
-          go-version: 1.13
+          # cache: true
+          go-version-file: 'go.mod'
 
       - name: Install dependencies
         run: |
@@ -86,10 +97,14 @@ jobs:
           go mod vendor
 
       - name: Run linters
-        uses: golangci/golangci-lint-action@v3
+        uses: golangci/golangci-lint-action@537aa1903e5d359d0b27dbc19ddd22c5087f3fbc # v3.2.0
         with:
           version: v1.31
           working-directory: gopgv10
+          args: --verbose
+          # See: https://github.com/golangci/golangci-lint-action/issues/244
+          skip-pkg-cache: true
+          skip-build-cache: true
 
       - name: Run tests
         run: |
