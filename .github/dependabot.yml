@@ -1,0 +1,21 @@
+version: 2
+updates:
+  - package-ecosystem: "gomod"
+    directory: "/"
+    schedule:
+      interval: "monthly"
+    open-pull-requests-limit: 0 # Disable version updates.
+  - package-ecosystem: "gomod"
+    directory: "/gopgv9"
+    schedule:
+      interval: "monthly"
+    open-pull-requests-limit: 0 # Disable version updates.
+  - package-ecosystem: "gomod"
+    directory: "/gopgv10"
+    schedule:
+      interval: "monthly"
+    open-pull-requests-limit: 0 # Disable version updates.
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "monthly"
