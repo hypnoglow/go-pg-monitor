@@ -1,6 +1,8 @@
 # go-pg-monitor
 
 [![Go Reference](https://pkg.go.dev/badge/github.com/hypnoglow/go-pg-monitor.svg)](https://pkg.go.dev/github.com/hypnoglow/go-pg-monitor)
+[![main](https://github.com/hypnoglow/go-pg-monitor/actions/workflows/main.yml/badge.svg)](https://github.com/hypnoglow/go-pg-monitor/actions/workflows/main.yml)
+[![Go Report Card](https://goreportcard.com/badge/github.com/hypnoglow/go-pg-monitor)](https://goreportcard.com/report/github.com/hypnoglow/go-pg-monitor)
 
 Provides Prometheus metrics for [go-pg](https://github.com/go-pg/pg) database client.
 
