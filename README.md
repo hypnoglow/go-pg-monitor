@@ -14,7 +14,7 @@ Example Grafana dashboards:
 
 This package is now stable.
 
-As the [go-pg](https://github.com/go-pg/pg) in a maintenance mode, it is unlikely
+As the [go-pg](https://github.com/go-pg/pg) is in a maintenance mode, it is unlikely
 that new features will be introduced in this package. Fixing bugs and security issues
 will continue.
 
