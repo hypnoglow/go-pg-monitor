@@ -26,7 +26,7 @@ jobs:
           go mod vendor
 
       - name: Run linters
-        uses: golangci/golangci-lint-action@537aa1903e5d359d0b27dbc19ddd22c5087f3fbc # v3.2.0
+        uses: golangci/golangci-lint-action@07db5389c99593f11ad7b44463c2d4233066a9b1 # v3.3.0
         with:
           version: v1.31
           args: --verbose
@@ -61,7 +61,7 @@ jobs:
           go mod vendor
 
       - name: Run linters
-        uses: golangci/golangci-lint-action@537aa1903e5d359d0b27dbc19ddd22c5087f3fbc # v3.2.0
+        uses: golangci/golangci-lint-action@07db5389c99593f11ad7b44463c2d4233066a9b1 # v3.3.0
         with:
           version: v1.31
           working-directory: gopgv9
@@ -97,7 +97,7 @@ jobs:
           go mod vendor
 
       - name: Run linters
-        uses: golangci/golangci-lint-action@537aa1903e5d359d0b27dbc19ddd22c5087f3fbc # v3.2.0
+        uses: golangci/golangci-lint-action@07db5389c99593f11ad7b44463c2d4233066a9b1 # v3.3.0
         with:
           version: v1.31
           working-directory: gopgv10
