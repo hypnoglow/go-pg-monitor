@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"os"
 
 	"github.com/go-pg/pg/v9"
@@ -17,6 +18,9 @@ func main() {
 
 	db := pg.Connect(dbOpts)
 
+	// create unique pool name from DB address and database name
+	poolName := fmt.Printf("%s/%s", dbOpts.Addr, dbOpts.Database)
+
 	mon := monitor.NewMonitor(
 		// Observer package must match your go-pg version.
 		// E.g. for go-pg v10.x.x use package gopgv10.
@@ -31,6 +35,8 @@ func main() {
 			// my_app_go_pg_pool_hits{}
 			monitor.MetricsWithNamespace("my_app"),
 		),
+		// set pool name
+		monitor.MonitorWithPoolName(poolName),
 	)
 
 	mon.Open()
