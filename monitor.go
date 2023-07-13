@@ -21,10 +21,19 @@ type Monitor struct {
 	wg     sync.WaitGroup
 	ctx    context.Context
 	cancel context.CancelFunc
+
+	poolName string
 }
 
 // MonitorOption is an option for NewMonitor.
 type MonitorOption func(monitor *Monitor)
+
+// MonitorWithPoolName is an option that sets pool name for the monitor.
+func MonitorWithPoolName(poolName string) MonitorOption { //nolint:golint
+	return func(monitor *Monitor) {
+		monitor.poolName = poolName
+	}
+}
 
 // NewMonitor returns a new configured Monitor.
 func NewMonitor(observer Observer, metrics *Metrics, opts ...MonitorOption) *Monitor {
@@ -79,11 +88,11 @@ func (m *Monitor) worker() {
 func (m *Monitor) sync() {
 	stats := m.observer.Observe()
 
-	m.metrics.hits.Set(float64(stats.Hits))
-	m.metrics.misses.Set(float64(stats.Misses))
-	m.metrics.timeouts.Set(float64(stats.Timeouts))
+	m.metrics.hits.WithLabelValues(m.poolName).Set(float64(stats.Hits))
+	m.metrics.misses.WithLabelValues(m.poolName).Set(float64(stats.Misses))
+	m.metrics.timeouts.WithLabelValues(m.poolName).Set(float64(stats.Timeouts))
 
-	m.metrics.totalConns.Set(float64(stats.TotalConns))
-	m.metrics.idleConns.Set(float64(stats.IdleConns))
-	m.metrics.staleConns.Set(float64(stats.StaleConns))
+	m.metrics.totalConns.WithLabelValues(m.poolName).Set(float64(stats.TotalConns))
+	m.metrics.idleConns.WithLabelValues(m.poolName).Set(float64(stats.IdleConns))
+	m.metrics.staleConns.WithLabelValues(m.poolName).Set(float64(stats.StaleConns))
 }

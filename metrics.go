@@ -17,13 +17,13 @@ type Metrics struct {
 
 	constLabels prometheus.Labels
 
-	hits     prometheus.Gauge
-	misses   prometheus.Gauge
-	timeouts prometheus.Gauge
+	hits     *prometheus.GaugeVec
+	misses   *prometheus.GaugeVec
+	timeouts *prometheus.GaugeVec
 
-	totalConns prometheus.Gauge
-	idleConns  prometheus.Gauge
-	staleConns prometheus.Gauge
+	totalConns *prometheus.GaugeVec
+	idleConns  *prometheus.GaugeVec
+	staleConns *prometheus.GaugeVec
 
 	registerer prometheus.Registerer
 }
@@ -71,7 +71,7 @@ func NewMetrics(opts ...MetricsOption) *Metrics {
 		opt(m)
 	}
 
-	hits := prometheus.NewGauge(
+	hits := prometheus.NewGaugeVec(
 		prometheus.GaugeOpts{
 			Namespace:   m.namespace,
 			Subsystem:   m.subsystem,
@@ -79,11 +79,12 @@ func NewMetrics(opts ...MetricsOption) *Metrics {
 			Name:        "pool_hits",
 			Help:        "Number of times free connection was found in the pool",
 		},
+		[]string{"pool_name"},
 	)
 	m.registerer.MustRegister(hits)
 	m.hits = hits
 
-	misses := prometheus.NewGauge(
+	misses := prometheus.NewGaugeVec(
 		prometheus.GaugeOpts{
 			Namespace:   m.namespace,
 			Subsystem:   m.subsystem,
@@ -91,11 +92,12 @@ func NewMetrics(opts ...MetricsOption) *Metrics {
 			Name:        "pool_misses",
 			Help:        "Number of times free connection was NOT found in the pool",
 		},
+		[]string{"pool_name"},
 	)
 	m.registerer.MustRegister(misses)
 	m.misses = misses
 
-	timeouts := prometheus.NewGauge(
+	timeouts := prometheus.NewGaugeVec(
 		prometheus.GaugeOpts{
 			Namespace:   m.namespace,
 			Subsystem:   m.subsystem,
@@ -103,11 +105,12 @@ func NewMetrics(opts ...MetricsOption) *Metrics {
 			Name:        "pool_timeouts",
 			Help:        "Number of times a wait timeout occurred",
 		},
+		[]string{"pool_name"},
 	)
 	m.registerer.MustRegister(timeouts)
 	m.timeouts = timeouts
 
-	totalConns := prometheus.NewGauge(
+	totalConns := prometheus.NewGaugeVec(
 		prometheus.GaugeOpts{
 			Namespace:   m.namespace,
 			Subsystem:   m.subsystem,
@@ -115,11 +118,12 @@ func NewMetrics(opts ...MetricsOption) *Metrics {
 			Name:        "pool_total_connections",
 			Help:        "Number of total connections in the pool",
 		},
+		[]string{"pool_name"},
 	)
 	m.registerer.MustRegister(totalConns)
 	m.totalConns = totalConns
 
-	idleConns := prometheus.NewGauge(
+	idleConns := prometheus.NewGaugeVec(
 		prometheus.GaugeOpts{
 			Namespace:   m.namespace,
 			Subsystem:   m.subsystem,
@@ -127,11 +131,12 @@ func NewMetrics(opts ...MetricsOption) *Metrics {
 			Name:        "pool_idle_connections",
 			Help:        "Number of idle connections in the pool",
 		},
+		[]string{"pool_name"},
 	)
 	m.registerer.MustRegister(idleConns)
 	m.idleConns = idleConns
 
-	staleConns := prometheus.NewGauge(
+	staleConns := prometheus.NewGaugeVec(
 		prometheus.GaugeOpts{
 			Namespace:   m.namespace,
 			Subsystem:   m.subsystem,
@@ -139,6 +144,7 @@ func NewMetrics(opts ...MetricsOption) *Metrics {
 			Name:        "pool_stale_connections",
 			Help:        "Number of stale connections removed from the pool",
 		},
+		[]string{"pool_name"},
 	)
 	m.registerer.MustRegister(staleConns)
 	m.staleConns = staleConns
