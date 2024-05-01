@@ -29,9 +29,6 @@ jobs:
         with:
           version: v1.31
           args: --verbose
-          # See: https://github.com/golangci/golangci-lint-action/issues/244
-          skip-pkg-cache: true
-          skip-build-cache: true
 
       - name: Run tests
         run: |
@@ -64,9 +61,6 @@ jobs:
           version: v1.31
           working-directory: gopgv9
           args: --verbose
-          # See: https://github.com/golangci/golangci-lint-action/issues/244
-          skip-pkg-cache: true
-          skip-build-cache: true
 
       - name: Run tests
         run: |
@@ -99,9 +93,6 @@ jobs:
           version: v1.31
           working-directory: gopgv10
           args: --verbose
-          # See: https://github.com/golangci/golangci-lint-action/issues/244
-          skip-pkg-cache: true
-          skip-build-cache: true
 
       - name: Run tests
         run: |
