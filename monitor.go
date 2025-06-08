@@ -29,7 +29,7 @@ type Monitor struct {
 type MonitorOption func(monitor *Monitor)
 
 // MonitorWithPoolName is an option that sets pool name for the monitor.
-func MonitorWithPoolName(poolName string) MonitorOption { //nolint:golint
+func MonitorWithPoolName(poolName string) MonitorOption {
 	return func(monitor *Monitor) {
 		monitor.poolName = poolName
 	}

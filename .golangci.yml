@@ -1,8 +1,6 @@
-version: "2"
+# Reference: https://golangci-lint.run/usage/configuration/
 
-run:
-  concurrency: 4
-  timeout: 5m
+version: "2"
 
 linters:
   default: none
@@ -11,13 +9,13 @@ linters:
     - goconst
     - gocritic
     - gocyclo
-    - revive
     - gosec
     - govet
     - ineffassign
     - misspell
     - nakedret
     - prealloc
+    - revive
     - staticcheck
     - unconvert
     - unparam
@@ -35,21 +33,22 @@ linters:
     rules:
       - linters:
           - revive
-        text: type name will be used as monitor.MonitorOption
+        text: (type name will be used as monitor.MonitorOption|func name will be used as monitor.MonitorWithPoolName)
 
 formatters:
   enable:
     - gci
     - gofmt
-    - goimports
   settings:
     gci:
       sections:
         - standard
         - default
         - prefix(github.com/hypnoglow/go-pg-monitor)
-    goimports:
-      local-prefixes: github.com/hypnoglow/go-pg-monitor
 
 issues:
   fix: true
+
+run:
+  timeout: 5m
+  build-tags: []
