@@ -19,7 +19,7 @@ func main() {
 	db := pg.Connect(dbOpts)
 
 	// create unique pool name from DB address and database name
-	poolName := fmt.Printf("%s/%s", dbOpts.Addr, dbOpts.Database)
+	poolName := fmt.Sprintf("%s/%s", dbOpts.Addr, dbOpts.Database)
 
 	mon := monitor.NewMonitor(
 		// Observer package must match your go-pg version.
