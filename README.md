@@ -1,9 +1,9 @@
 # go-pg-monitor
 
-[![Go Reference](https://pkg.go.dev/badge/github.com/hypnoglow/go-pg-monitor.svg)](https://pkg.go.dev/github.com/hypnoglow/go-pg-monitor)
-![Maintenance](https://img.shields.io/maintenance/yes/2025)
-[![main](https://github.com/hypnoglow/go-pg-monitor/actions/workflows/main.yml/badge.svg)](https://github.com/hypnoglow/go-pg-monitor/actions/workflows/main.yml)
-[![Go Report Card](https://goreportcard.com/badge/github.com/hypnoglow/go-pg-monitor)](https://goreportcard.com/report/github.com/hypnoglow/go-pg-monitor)
+[![Go Reference](https://img.shields.io/badge/Reference-007D7E?style=for-the-badge&logo=go&logoColor=white&logoSize=auto&labelColor=gray&link=https%3A%2F%2Fpkg.go.dev%2Fgithub.com%2Fhypnoglow%2Fgo-pg-monitor)](https://pkg.go.dev/github.com/hypnoglow/go-pg-monitor)
+[![Maintenance](https://img.shields.io/badge/maintained-yes-green?style=for-the-badge)](https://github.com/hypnoglow/go-pg-monitor)
+[![main](https://img.shields.io/github/actions/workflow/status/hypnoglow/go-pg-monitor/main.yml?branch=master&style=for-the-badge&logo=github&label=main
+)](https://github.com/hypnoglow/go-pg-monitor/actions/workflows/main.yml)
 
 Provides Prometheus metrics for [go-pg](https://github.com/go-pg/pg) database client.
 
